@@ -34,7 +34,8 @@
     "imageAlt": "Cover for Personalization and Messaging bundle",
     "status": "live",
     "coverColor": "#111111",
-    "coverTextColor": "#ffffff"
+    "coverTextColor": "#ffffff",
+    "detailPage": "bundle-personalization-messaging.html"
   },
   {
     "id": "bundle-2",
@@ -54,7 +55,8 @@
     "imageAlt": "Cover for free 3 play sample",
     "status": "live",
     "coverColor": "#e8e8e8",
-    "coverTextColor": "#111111"
+    "coverTextColor": "#111111",
+    "detailPage": "sample-3-plays.pdf"
   },
   {
     "id": "bundle-3",
@@ -91,7 +93,8 @@
     "imageAlt": "",
     "status": "live",
     "coverColor": "#0b5fff",
-    "coverTextColor": "#ffffff"
+    "coverTextColor": "#ffffff",
+    "detailPage": "bundle-cold-email.html"
   },
   {
     "id": "bundle-4",
@@ -128,7 +131,8 @@
     "imageAlt": "",
     "status": "live",
     "coverColor": "#5b4a8a",
-    "coverTextColor": "#ffffff"
+    "coverTextColor": "#ffffff",
+    "detailPage": "bundle-multichannel-sequences.html"
   },
   {
     "id": "bundle-5",
@@ -165,6 +169,7 @@
     "imageAlt": "",
     "status": "live",
     "coverColor": "#0f7a5c",
-    "coverTextColor": "#ffffff"
+    "coverTextColor": "#ffffff",
+    "detailPage": "bundle-icp-targeting.html"
   }
 ]

@@ -101,7 +101,7 @@ function bundleForm(b, idx) {
     + '<p><label>Contents, one play per line<br><textarea data-field="contents" data-idx="' + idx + '" style="width:100%;padding:8px;min-height:120px;">' + esc(contents) + '</textarea></label></p>'
     + '<p><label>Button label<br><input data-field="buttonLabel" data-idx="' + idx + '" value="' + esc(b.buttonLabel) + '" style="width:100%;padding:8px;"></label></p>'
     + '<p><label>Button link, mailto for notify, or a PDF filename for download<br><input data-field="buttonHref" data-idx="' + idx + '" value="' + esc(b.buttonHref) + '" style="width:100%;padding:8px;"></label></p>'
-    + '<p><label>Image filename, optional<br><input data-field="image" data-idx="' + idx + '" value="' + esc(b.image || '') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Cover colour, for example #111111<br><input data-field="coverColor" data-idx="' + idx + '" value="' + esc(b.coverColor || '#111111') + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><label>Image filename, optional<br><input data-field="image" data-idx="' + idx + '" value="' + esc(b.image || '') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Cover colour, for example #111111<br><input data-field="coverColor" data-idx="' + idx + '" value="' + esc(b.coverColor || '#111111') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Detail page, for example bundle-cold-email.html, or PDF for free sample<br><input data-field="detailPage" data-idx="' + idx + '" value="' + esc(b.detailPage || '') + '" style="width:100%;padding:8px;"></label></p>'
     + '<p><button class="btn" type="button" onclick="deleteBundle(' + idx + ')">Delete this bundle</button></p>'
     + '</article>';
 }

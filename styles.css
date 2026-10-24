@@ -71,3 +71,27 @@ details ol { padding-left: 20px; color: #333; font-size: 15px; }
   .bundle-grid { grid-template-columns: 1fr; }
   .featured-card { grid-template-columns: 1fr; }
 }
+
+/* Rebuild from other creators, 2026-10-24: clean store listing, buy column detail */
+.store-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.store-card { padding: 0; overflow: hidden; }
+.store-card .cover-block { border-radius: 0; min-height: 180px; }
+.store-card h3 { padding: 16px 20px 0; }
+.store-card .footer-row { margin: 0 20px 20px; border-top: 0; padding-top: 0; }
+.price-ribbon { display: inline-block; background: #111; color: #fff; padding: 6px 12px; font-weight: 800; border-radius: 6px; }
+.detail-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; padding-top: 32px; }
+.buy-box { border: 1px solid #ddd; border-radius: 16px; padding: 22px; position: sticky; top: 80px; }
+.buy-box .price-ribbon { font-size: 28px; padding: 10px 16px; }
+.full-btn { display: block; text-align: center; width: 100%; }
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 15px; }
+.spec-table td { border-top: 1px solid #eee; padding: 8px 0; }
+.spec-table td:first-child { color: #666; }
+.play-list { font-size: 17px; line-height: 1.7; }
+.play-list li { margin-bottom: 8px; }
+.sticky-buy { position: sticky; top: 57px; background: #fff; border-bottom: 1px solid #eee; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; z-index: 5; }
+.large-cover { min-height: 240px; }
+@media (max-width: 760px) {
+  .store-grid, .detail-grid { grid-template-columns: 1fr; }
+  .buy-box { position: static; }
+  .sticky-buy { flex-direction: column; align-items: flex-start; }
+}
