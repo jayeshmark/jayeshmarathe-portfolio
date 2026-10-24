@@ -16,6 +16,8 @@ h3 { font-size: 20px; margin: 0 0 8px; }
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0; }
 .btn { display: inline-block; padding: 12px 20px; border: 1px solid #111; border-radius: 999px; color: #111; text-decoration: none; font-weight: 700; }
 .btn.primary { background: #111; color: #fff; }
+.btn.disabled { opacity: .55; cursor: not-allowed; background: #eee; border-color: #ddd; }
+.bundle-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 16px; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 20px 0; margin-top: 32px; }
 .stats strong { display: block; font-size: 28px; }
 .stats span { color: #555; font-size: 14px; }
