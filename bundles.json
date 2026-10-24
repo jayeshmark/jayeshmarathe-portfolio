@@ -32,7 +32,9 @@
     "buttonHref": "mailto:jayeshmarathe2000jm@gmail.com?subject=Notify%20me%20when%20the%20Personalization%20and%20Messaging%20bundle%20checkout%20is%20live",
     "image": "cover.png",
     "imageAlt": "Cover for Personalization and Messaging bundle",
-    "status": "live"
+    "status": "live",
+    "coverColor": "#111111",
+    "coverTextColor": "#ffffff"
   },
   {
     "id": "bundle-2",
@@ -50,7 +52,9 @@
     "buttonHref": "sample-3-plays.pdf",
     "image": "sample-cover.png",
     "imageAlt": "Cover for free 3 play sample",
-    "status": "live"
+    "status": "live",
+    "coverColor": "#e8e8e8",
+    "coverTextColor": "#111111"
   },
   {
     "id": "bundle-3",
@@ -85,7 +89,9 @@
     "buttonHref": "mailto:jayeshmarathe2000jm@gmail.com?subject=Notify%20me%20when%20the%20Cold%20Email%20bundle%20checkout%20is%20live",
     "image": "",
     "imageAlt": "",
-    "status": "live"
+    "status": "live",
+    "coverColor": "#0b5fff",
+    "coverTextColor": "#ffffff"
   },
   {
     "id": "bundle-4",
@@ -120,7 +126,9 @@
     "buttonHref": "mailto:jayeshmarathe2000jm@gmail.com?subject=Notify%20me%20when%20the%20Multichannel%20Sequences%20bundle%20checkout%20is%20live",
     "image": "",
     "imageAlt": "",
-    "status": "live"
+    "status": "live",
+    "coverColor": "#5b4a8a",
+    "coverTextColor": "#ffffff"
   },
   {
     "id": "bundle-5",
@@ -155,6 +163,8 @@
     "buttonHref": "mailto:jayeshmarathe2000jm@gmail.com?subject=Notify%20me%20when%20the%20ICP%20and%20Targeting%20bundle%20checkout%20is%20live",
     "image": "",
     "imageAlt": "",
-    "status": "live"
+    "status": "live",
+    "coverColor": "#0f7a5c",
+    "coverTextColor": "#ffffff"
   }
 ]
