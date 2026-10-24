@@ -1,1 +1,1 @@
-{"rewrites":[{"destination":"/products.html","source":"/products"},{"destination":"/products.html","source":"/bundles"},{"destination":"/Jayesh-Marathe-Resume.pdf","source":"/resume"}]}
+{"rewrites": [{"destination": "/products.html", "source": "/products"}, {"destination": "/bundles.html", "source": "/bundles"}, {"destination": "/Jayesh-Marathe-Resume.pdf", "source": "/resume"}]}
