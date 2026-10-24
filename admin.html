@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | Jayesh Marathe</title>
+<meta name="description" content="Admin for jayeshmarathe.com, GitHub login only.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">Jayesh Marathe</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="bundles.html">Bundles</a>
+  </nav>
+</header>
+<main>
+  <section class="hero reveal">
+    <p class="eyebrow">Admin, unlisted, not in the public nav</p>
+    <h1>Manage bundles.</h1>
+    <p class="lede">Only the GitHub account jayeshmark, with the verified email jayeshmarathe2000jm@gmail.com, can log in here. Anyone else sees only this login form, and gets no bundle data.</p>
+    <p class="small">How it works, honestly: this page has no server and no password of its own. You paste a GitHub Personal Access Token you create yourself at github.com/settings/tokens, with Contents read and write for this one repo only. The token is stored only in your browser, it is sent only to api.github.com to check who you are and to save bundles.json, it is never sent to this site's server, and it is never shown in chat. If you do not have a token yet, create one first, then come back here. Do not paste your token anywhere else, and do not send it to anyone in chat.</p>
+  </section>
+
+  <section id="login-section" class="reveal">
+    <h2>Log in with GitHub</h2>
+    <label for="token">GitHub Personal Access Token</label><br>
+    <input id="token" type="password" autocomplete="off" style="width:100%;max-width:560px;padding:10px;margin:8px 0;" placeholder="Paste your token here, it stays in your browser only">
+    <p><button class="btn primary" id="login-btn" type="button">Log in</button>
+    <button class="btn" id="logout-btn" type="button">Log out and clear token</button></p>
+    <p id="login-status" class="small"></p>
+  </section>
+
+  <section id="admin-section" class="reveal" style="display:none;">
+    <h2>Your bundles</h2>
+    <p class="small">Edit a bundle, add a new one, or delete one. Saving writes bundles.json to GitHub, then Vercel redeploys, and the Bundles page updates from that file. The live Bundles page keeps its static cards as a fallback, so if bundles.json ever fails to load, visitors still see the last static cards.</p>
+    <p><button class="btn" id="add-bundle-btn" type="button">Add a new bundle</button>
+    <button class="btn primary" id="save-btn" type="button">Save all bundles to GitHub</button></p>
+    <p id="save-status" class="small"></p>
+    <div id="bundle-forms"></div>
+  </section>
+
+  <section class="reveal">
+    <h2>What this admin does not do, yet</h2>
+    <ul>
+      <li>It does not manage checkout, payments, or PDFs. Checkout is still not connected, and no paid PDF is uploaded by this admin.</li>
+      <li>It does not manage products, case studies, or site design. Those are still edited in the repo.</li>
+      <li>It does not create a GitHub token for you. Token creation is your step, in GitHub settings.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2026 Jayesh Marathe &middot; jayeshmarathe.com</p>
+</footer>
+<script>
+var OWNER = 'jayeshmark';
+var REPO = 'jayeshmarathe-portfolio';
+var ALLOWED_EMAIL = 'jayeshmarathe2000jm@gmail.com';
+var ALLOWED_LOGIN = 'jayeshmark';
+var token = localStorage.getItem('jm_admin_token') || '';
+var fileSha = '';
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function b64encode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function b64decode(str) {
+  return decodeURIComponent(escape(atob(str.replace(/\s/g, ''))));
+}
+async function gh(path, method, body) {
+  var res = await fetch('https://api.github.com' + path, {
+    method: method || 'GET',
+    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  var data = null;
+  try { data = await res.json(); } catch (e) {}
+  if (!res.ok) {
+    throw new Error((data && data.message) || ('GitHub request failed: ' + res.status));
+  }
+  return data;
+}
+function setStatus(id, text) { document.getElementById(id).textContent = text; }
+function showAdmin(show) {
+  document.getElementById('admin-section').style.display = show ? 'block' : 'none';
+  document.getElementById('login-section').style.display = show ? 'none' : 'block';
+}
+function bundleForm(b, idx) {
+  var contents = (b.contents || []).join('\n');
+  return '<article class="card" style="margin-bottom:20px;">'
+    + '<h3>Bundle ' + (idx + 1) + '</h3>'
+    + '<p><label>Title<br><input data-field="title" data-idx="' + idx + '" value="' + esc(b.title) + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><label>Price in dollars, 0 for free<br><input data-field="price" data-idx="' + idx + '" type="number" value="' + esc(b.price) + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><label>Description<br><textarea data-field="description" data-idx="' + idx + '" style="width:100%;padding:8px;min-height:80px;">' + esc(b.description) + '</textarea></label></p>'
+    + '<p><label>Contents, one play per line<br><textarea data-field="contents" data-idx="' + idx + '" style="width:100%;padding:8px;min-height:120px;">' + esc(contents) + '</textarea></label></p>'
+    + '<p><label>Button label<br><input data-field="buttonLabel" data-idx="' + idx + '" value="' + esc(b.buttonLabel) + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><label>Button link, mailto for notify, or a PDF filename for download<br><input data-field="buttonHref" data-idx="' + idx + '" value="' + esc(b.buttonHref) + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><label>Image filename, optional<br><input data-field="image" data-idx="' + idx + '" value="' + esc(b.image || '') + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><button class="btn" type="button" onclick="deleteBundle(' + idx + ')">Delete this bundle</button></p>'
+    + '</article>';
+}
+var bundles = [];
+function renderForms() {
+  document.getElementById('bundle-forms').innerHTML = bundles.map(bundleForm).join('');
+}
+function readForms() {
+  var inputs = document.querySelectorAll('[data-field]');
+  inputs.forEach(function(el) {
+    var idx = parseInt(el.getAttribute('data-idx'), 10);
+    var field = el.getAttribute('data-field');
+    if (field === 'contents') { bundles[idx].contents = el.value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean); }
+    else if (field === 'price') { bundles[idx].price = parseInt(el.value, 10) || 0; }
+    else { bundles[idx][field] = el.value; }
+  });
+}
+function deleteBundle(idx) {
+  readForms();
+  bundles.splice(idx, 1);
+  renderForms();
+}
+async function login() {
+  token = document.getElementById('token').value.trim();
+  if (!token) { setStatus('login-status', 'Paste a token first.'); return; }
+  setStatus('login-status', 'Checking GitHub, please wait.');
+  try {
+    var user = await gh('/user');
+    if (user.login !== ALLOWED_LOGIN) { throw new Error('This GitHub account is not jayeshmark. Access denied.'); }
+    var emails = await gh('/user/emails');
+    var ok = emails.some(function(e) { return e.email === ALLOWED_EMAIL && e.verified; });
+    if (!ok) { throw new Error('Verified email jayeshmarathe2000jm@gmail.com was not found on this GitHub account. Access denied.'); }
+    localStorage.setItem('jm_admin_token', token);
+    var file = await gh('/repos/' + OWNER + '/' + REPO + '/contents/bundles.json');
+    fileSha = file.sha;
+    bundles = JSON.parse(b64decode(file.content));
+    renderForms();
+    showAdmin(true);
+    setStatus('save-status', 'Logged in as ' + user.login + '. Bundles loaded from GitHub.');
+  } catch (e) {
+    token = '';
+    localStorage.removeItem('jm_admin_token');
+    showAdmin(false);
+    setStatus('login-status', 'Login failed: ' + e.message + ' Token was not kept.');
+  }
+}
+async function saveBundles() {
+  readForms();
+  setStatus('save-status', 'Saving to GitHub, please wait.');
+  try {
+    var body = {
+      message: 'Admin: update bundles.json',
+      content: b64encode(JSON.stringify(bundles, null, 2)),
+      sha: fileSha
+    };
+    var res = await gh('/repos/' + OWNER + '/' + REPO + '/contents/bundles.json', 'PUT', body);
+    fileSha = res.content.sha;
+    setStatus('save-status', 'Saved. Vercel will redeploy, then the Bundles page will update from bundles.json. Check jayeshmarathe.com/bundles after the deploy finishes.');
+  } catch (e) {
+    setStatus('save-status', 'Save failed: ' + e.message + ' Nothing was changed on the live site by this attempt.');
+  }
+}
+document.getElementById('login-btn').addEventListener('click', login);
+document.getElementById('logout-btn').addEventListener('click', function() {
+  token = '';
+  localStorage.removeItem('jm_admin_token');
+  document.getElementById('token').value = '';
+  showAdmin(false);
+  setStatus('login-status', 'Logged out. Token cleared from this browser.');
+});
+document.getElementById('save-btn').addEventListener('click', saveBundles);
+document.getElementById('add-bundle-btn').addEventListener('click', function() {
+  readForms();
+  bundles.push({ id: 'bundle-' + (bundles.length + 1), title: 'New bundle', description: '', inside: '', contents: [], price: 29, guarantee: '7 day guarantee', buttonLabel: 'Notify me when checkout is live', buttonHref: 'mailto:jayeshmarathe2000jm@gmail.com', image: '', imageAlt: '', status: 'live' });
+  renderForms();
+});
+if (token) { document.getElementById('token').value = token; }
+</script>
+<script src="script.js"></script>
+</body>
+</html>
