@@ -159,7 +159,9 @@
     .store-card { border: 1px solid var(--line); border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; }
     .store-card .cover-block { border-radius: 0; }
     .store-card h3 { margin: 0; padding: 18px 18px 0; font-size: 17px; line-height: 1.5; font-weight: 530; letter-spacing: -.035em; }
-    .store-card h3 a:hover { color: var(--accent); }
+    a.store-card:hover { border-color: var(--ink); }
+    a.store-card:hover h3 { color: var(--accent); }
+    a.store-card:hover .footer-row span:last-child { color: var(--accent); }
     .footer-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px 18px; margin-top: auto; font-size: 13px; }
     .footer-row a:hover { color: var(--accent); }
     .price-ribbon { font-weight: 600; }
@@ -206,31 +208,31 @@
         </div>
         <p class="intro" style="margin-bottom:28px">Click a bundle to see all its plays, price, and guarantee.</p>
         <div class="grid store-grid" id="bundle-grid">
-<article class="card store-card">
+<a class="card store-card" href="bundle-personalization-messaging.html">
 <div class="cover-block" style="background:#111111;color:#ffffff"><span class="cover-label">20 PLAYS</span><span class="cover-title">Personalization and Messaging</span></div>
 <h3>Personalization and Messaging: 20 Outbound Plays You Can Hand to Your Agent</h3>
-<div class="footer-row"><span class="price-ribbon">$29</span><a href="bundle-personalization-messaging.html">View &rarr;</a></div>
-</article>
-<article class="card store-card">
+<div class="footer-row"><span class="price-ribbon">$29</span><span>View &rarr;</span></div>
+</a>
+<a class="card store-card" href="sample-3-plays.pdf">
 <div class="cover-block" style="background:#e8e8e8;color:#111111"><span class="cover-label">FREE SAMPLE</span><span class="cover-title">Free sample</span></div>
 <h3>Free sample: 3 plays from Personalization and Messaging</h3>
-<div class="footer-row"><span class="price-ribbon">$0</span><a href="sample-3-plays.pdf">View &rarr;</a></div>
-</article>
-<article class="card store-card">
+<div class="footer-row"><span class="price-ribbon">$0</span><span>View &rarr;</span></div>
+</a>
+<a class="card store-card" href="bundle-cold-email.html">
 <div class="cover-block" style="background:#0b5fff;color:#ffffff"><span class="cover-label">20 PLAYS</span><span class="cover-title">Cold Email</span></div>
 <h3>Cold Email: 20 Outbound Plays You Can Hand to Your Agent</h3>
-<div class="footer-row"><span class="price-ribbon">$29</span><a href="bundle-cold-email.html">View &rarr;</a></div>
-</article>
-<article class="card store-card">
+<div class="footer-row"><span class="price-ribbon">$29</span><span>View &rarr;</span></div>
+</a>
+<a class="card store-card" href="bundle-multichannel-sequences.html">
 <div class="cover-block" style="background:#5b4a8a;color:#ffffff"><span class="cover-label">20 PLAYS</span><span class="cover-title">Multichannel Sequences</span></div>
 <h3>Multichannel Sequences: 20 Outbound Plays You Can Hand to Your Agent</h3>
-<div class="footer-row"><span class="price-ribbon">$29</span><a href="bundle-multichannel-sequences.html">View &rarr;</a></div>
-</article>
-<article class="card store-card">
+<div class="footer-row"><span class="price-ribbon">$29</span><span>View &rarr;</span></div>
+</a>
+<a class="card store-card" href="bundle-icp-targeting.html">
 <div class="cover-block" style="background:#0f7a5c;color:#ffffff"><span class="cover-label">20 PLAYS</span><span class="cover-title">ICP and Targeting</span></div>
 <h3>ICP and Targeting: 20 Outbound Plays You Can Hand to Your Agent</h3>
-<div class="footer-row"><span class="price-ribbon">$29</span><a href="bundle-icp-targeting.html">View &rarr;</a></div>
-</article>
+<div class="footer-row"><span class="price-ribbon">$29</span><span>View &rarr;</span></div>
+</a>
     </div>
       </section>
 
@@ -254,7 +256,7 @@
     grid.innerHTML = live.map(function(b) {
       var label = b.price === 0 ? 'FREE SAMPLE' : '20 PLAYS';
       var link = b.detailPage || b.buttonHref;
-      return '<article class="card store-card"><div class="cover-block" style="background:' + esc(b.coverColor || '#111111') + ';color:' + esc(b.coverTextColor || '#ffffff') + '"><span class="cover-label">' + label + '</span><span class="cover-title">' + esc(b.title.split(':')[0]) + '</span></div><h3>' + esc(b.price === 0 ? 'Free sample: 3 plays from Personalization and Messaging' : b.title) + '</h3><div class="footer-row"><span class="price-ribbon">$' + esc(b.price) + '</span><a href="' + esc(link) + '">View &rarr;</a></div></article>';
+      return '<a class="card store-card" href="' + esc(link) + '"><div class="cover-block" style="background:' + esc(b.coverColor || '#111111') + ';color:' + esc(b.coverTextColor || '#ffffff') + '"><span class="cover-label">' + label + '</span><span class="cover-title">' + esc(b.title.split(':')[0]) + '</span></div><h3>' + esc(b.price === 0 ? 'Free sample: 3 plays from Personalization and Messaging' : b.title) + '</h3><div class="footer-row"><span class="price-ribbon">$' + esc(b.price) + '</span><span>View &rarr;</span></div></a>';
     }).join('');
   }).catch(function() { });
 })();
