@@ -15,15 +15,15 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
-    <a href="bundles.html">Bundles</a>
+    <a href="playbooks.html">Playbooks</a>
   </nav>
 </header>
 <main>
   <section class="hero reveal">
     <p class="eyebrow">Admin, unlisted, not in the public nav</p>
-    <h1>Manage bundles.</h1>
-    <p class="lede">Only the GitHub account jayeshmark, with the verified email jayeshmarathe2000jm@gmail.com, can log in here. Anyone else sees only this login form, and gets no bundle data.</p>
-    <p class="small">How it works, honestly: this page has no server and no password of its own. You paste a GitHub Personal Access Token you create yourself at github.com/settings/tokens, with Contents read and write for this one repo only. The token is stored only in your browser, it is sent only to api.github.com to check who you are and to save bundles.json, it is never sent to this site's server, and it is never shown in chat. If you do not have a token yet, create one first, then come back here. Do not paste your token anywhere else, and do not send it to anyone in chat.</p>
+    <h1>Manage playbooks.</h1>
+    <p class="lede">Only the GitHub account jayeshmark, with the verified email jayeshmarathe2000jm@gmail.com, can log in here. Anyone else sees only this login form, and gets no playbook data.</p>
+    <p class="small">How it works, honestly: this page has no server and no password of its own. You paste a GitHub Personal Access Token you create yourself at github.com/settings/tokens, with Contents read and write for this one repo only. The token is stored only in your browser, it is sent only to api.github.com to check who you are and to save playbooks.json, it is never sent to this site's server, and it is never shown in chat. If you do not have a token yet, create one first, then come back here. Do not paste your token anywhere else, and do not send it to anyone in chat.</p>
   </section>
 
   <section id="login-section" class="reveal">
@@ -36,12 +36,12 @@
   </section>
 
   <section id="admin-section" class="reveal" style="display:none;">
-    <h2>Your bundles</h2>
-    <p class="small">Edit a bundle, add a new one, or delete one. Saving writes bundles.json to GitHub, then Vercel redeploys, and the Bundles page updates from that file. The live Bundles page keeps its static cards as a fallback, so if bundles.json ever fails to load, visitors still see the last static cards.</p>
-    <p><button class="btn" id="add-bundle-btn" type="button">Add a new bundle</button>
-    <button class="btn primary" id="save-btn" type="button">Save all bundles to GitHub</button></p>
+    <h2>Your playbooks</h2>
+    <p class="small">Edit a playbook, add a new one, or delete one. Saving writes playbooks.json to GitHub, then Vercel redeploys, and the Playbooks page updates from that file. The live Playbooks page keeps its static cards as a fallback, so if playbooks.json ever fails to load, visitors still see the last static cards.</p>
+    <p><button class="btn" id="add-playbook-btn" type="button">Add a new playbook</button>
+    <button class="btn primary" id="save-btn" type="button">Save all playbooks to GitHub</button></p>
     <p id="save-status" class="small"></p>
-    <div id="bundle-forms"></div>
+    <div id="playbook-forms"></div>
   </section>
 
   <section class="reveal">
@@ -91,37 +91,37 @@ function showAdmin(show) {
   document.getElementById('admin-section').style.display = show ? 'block' : 'none';
   document.getElementById('login-section').style.display = show ? 'none' : 'block';
 }
-function bundleForm(b, idx) {
+function playbookForm(b, idx) {
   var contents = (b.contents || []).join('\n');
   return '<article class="card" style="margin-bottom:20px;">'
-    + '<h3>Bundle ' + (idx + 1) + '</h3>'
+    + '<h3>Playbook ' + (idx + 1) + '</h3>'
     + '<p><label>Title<br><input data-field="title" data-idx="' + idx + '" value="' + esc(b.title) + '" style="width:100%;padding:8px;"></label></p>'
     + '<p><label>Price in dollars, 0 for free<br><input data-field="price" data-idx="' + idx + '" type="number" value="' + esc(b.price) + '" style="width:100%;padding:8px;"></label></p>'
     + '<p><label>Description<br><textarea data-field="description" data-idx="' + idx + '" style="width:100%;padding:8px;min-height:80px;">' + esc(b.description) + '</textarea></label></p>'
     + '<p><label>Contents, one play per line<br><textarea data-field="contents" data-idx="' + idx + '" style="width:100%;padding:8px;min-height:120px;">' + esc(contents) + '</textarea></label></p>'
     + '<p><label>Button label<br><input data-field="buttonLabel" data-idx="' + idx + '" value="' + esc(b.buttonLabel) + '" style="width:100%;padding:8px;"></label></p>'
     + '<p><label>Button link, mailto for notify, or a PDF filename for download<br><input data-field="buttonHref" data-idx="' + idx + '" value="' + esc(b.buttonHref) + '" style="width:100%;padding:8px;"></label></p>'
-    + '<p><label>Image filename, optional<br><input data-field="image" data-idx="' + idx + '" value="' + esc(b.image || '') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Cover colour, for example #111111<br><input data-field="coverColor" data-idx="' + idx + '" value="' + esc(b.coverColor || '#111111') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Detail page, for example bundle-cold-email.html, or PDF for free sample<br><input data-field="detailPage" data-idx="' + idx + '" value="' + esc(b.detailPage || '') + '" style="width:100%;padding:8px;"></label></p>'
-    + '<p><button class="btn" type="button" onclick="deleteBundle(' + idx + ')">Delete this bundle</button></p>'
+    + '<p><label>Image filename, optional<br><input data-field="image" data-idx="' + idx + '" value="' + esc(b.image || '') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Cover colour, for example #111111<br><input data-field="coverColor" data-idx="' + idx + '" value="' + esc(b.coverColor || '#111111') + '" style="width:100%;padding:8px;"></label></p>' + '<p><label>Detail page, for example playbook-cold-email.html, or PDF for free sample<br><input data-field="detailPage" data-idx="' + idx + '" value="' + esc(b.detailPage || '') + '" style="width:100%;padding:8px;"></label></p>'
+    + '<p><button class="btn" type="button" onclick="deletePlaybook(' + idx + ')">Delete this playbook</button></p>'
     + '</article>';
 }
-var bundles = [];
+var playbooks = [];
 function renderForms() {
-  document.getElementById('bundle-forms').innerHTML = bundles.map(bundleForm).join('');
+  document.getElementById('playbook-forms').innerHTML = playbooks.map(playbookForm).join('');
 }
 function readForms() {
   var inputs = document.querySelectorAll('[data-field]');
   inputs.forEach(function(el) {
     var idx = parseInt(el.getAttribute('data-idx'), 10);
     var field = el.getAttribute('data-field');
-    if (field === 'contents') { bundles[idx].contents = el.value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean); }
-    else if (field === 'price') { bundles[idx].price = parseInt(el.value, 10) || 0; }
-    else { bundles[idx][field] = el.value; }
+    if (field === 'contents') { playbooks[idx].contents = el.value.split('\n').map(function(s) { return s.trim(); }).filter(Boolean); }
+    else if (field === 'price') { playbooks[idx].price = parseInt(el.value, 10) || 0; }
+    else { playbooks[idx][field] = el.value; }
   });
 }
-function deleteBundle(idx) {
+function deletePlaybook(idx) {
   readForms();
-  bundles.splice(idx, 1);
+  playbooks.splice(idx, 1);
   renderForms();
 }
 async function login() {
@@ -135,12 +135,12 @@ async function login() {
     var ok = emails.some(function(e) { return e.email === ALLOWED_EMAIL && e.verified; });
     if (!ok) { throw new Error('Verified email jayeshmarathe2000jm@gmail.com was not found on this GitHub account. Access denied.'); }
     localStorage.setItem('jm_admin_token', token);
-    var file = await gh('/repos/' + OWNER + '/' + REPO + '/contents/bundles.json');
+    var file = await gh('/repos/' + OWNER + '/' + REPO + '/contents/playbooks.json');
     fileSha = file.sha;
-    bundles = JSON.parse(b64decode(file.content));
+    playbooks = JSON.parse(b64decode(file.content));
     renderForms();
     showAdmin(true);
-    setStatus('save-status', 'Logged in as ' + user.login + '. Bundles loaded from GitHub.');
+    setStatus('save-status', 'Logged in as ' + user.login + '. Playbooks loaded from GitHub.');
   } catch (e) {
     token = '';
     localStorage.removeItem('jm_admin_token');
@@ -148,18 +148,18 @@ async function login() {
     setStatus('login-status', 'Login failed: ' + e.message + ' Token was not kept.');
   }
 }
-async function saveBundles() {
+async function savePlaybooks() {
   readForms();
   setStatus('save-status', 'Saving to GitHub, please wait.');
   try {
     var body = {
-      message: 'Admin: update bundles.json',
-      content: b64encode(JSON.stringify(bundles, null, 2)),
+      message: 'Admin: update playbooks.json',
+      content: b64encode(JSON.stringify(playbooks, null, 2)),
       sha: fileSha
     };
-    var res = await gh('/repos/' + OWNER + '/' + REPO + '/contents/bundles.json', 'PUT', body);
+    var res = await gh('/repos/' + OWNER + '/' + REPO + '/contents/playbooks.json', 'PUT', body);
     fileSha = res.content.sha;
-    setStatus('save-status', 'Saved. Vercel will redeploy, then the Bundles page will update from bundles.json. Check jayeshmarathe.com/bundles after the deploy finishes.');
+    setStatus('save-status', 'Saved. Vercel will redeploy, then the Playbooks page will update from playbooks.json. Check jayeshmarathe.com/playbooks after the deploy finishes.');
   } catch (e) {
     setStatus('save-status', 'Save failed: ' + e.message + ' Nothing was changed on the live site by this attempt.');
   }
@@ -172,10 +172,10 @@ document.getElementById('logout-btn').addEventListener('click', function() {
   showAdmin(false);
   setStatus('login-status', 'Logged out. Token cleared from this browser.');
 });
-document.getElementById('save-btn').addEventListener('click', saveBundles);
-document.getElementById('add-bundle-btn').addEventListener('click', function() {
+document.getElementById('save-btn').addEventListener('click', savePlaybooks);
+document.getElementById('add-playbook-btn').addEventListener('click', function() {
   readForms();
-  bundles.push({ id: 'bundle-' + (bundles.length + 1), title: 'New bundle', description: '', inside: '', contents: [], price: 29, guarantee: '7 day guarantee', buttonLabel: 'Notify me when checkout is live', buttonHref: 'mailto:jayeshmarathe2000jm@gmail.com', image: '', imageAlt: '', status: 'live' });
+  playbooks.push({ id: 'playbook-' + (playbooks.length + 1), title: 'New playbook', description: '', inside: '', contents: [], price: 29, guarantee: '7 day guarantee', buttonLabel: 'Notify me when checkout is live', buttonHref: 'mailto:jayeshmarathe2000jm@gmail.com', image: '', imageAlt: '', status: 'live' });
   renderForms();
 });
 if (token) { document.getElementById('token').value = token; }
