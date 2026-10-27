@@ -88,7 +88,8 @@
       .wrap { width: min(100% - 36px, var(--max)); }
       .nav { min-height: 62px; }
       .navlinks { gap: 14px; }
-      .navlinks a:not(.nav-contact) { display: none; }
+      .nav { flex-wrap: wrap; row-gap: 4px; padding: 10px 0; }
+      .navlinks { gap: 12px; font-size: 11px; }
       .hero { padding-top: 36px; padding-bottom: 48px; }
       h1 { font-size: clamp(46px, 13vw, 70px); }
       .proof { gap: 13px; }
@@ -171,100 +172,114 @@
       .card-grid { grid-template-columns: 1fr; }
       .store-grid { grid-template-columns: 1fr; }
     }
+
+
+    .case-nav { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .case-nav a { display: block; border-top: 1px solid var(--line); padding-top: 16px; }
+    .case-nav h3 { margin: 0 0 6px; font-size: 16px; font-weight: 560; letter-spacing: -.035em; }
+    .case-nav p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .case-nav a:hover h3 { color: var(--accent); }
+    .role-line { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+    @media (max-width: 680px) { .case-nav { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-  <header class="topbar">
+<header class="topbar">
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="wordmark" href="index.html">JAYESH MARATHE</a>
       <div class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="bundles.html">Bundles</a>
         <a href="#work">Work</a>
-        <a class="nav-contact" href="#contact">Contact ↗</a>
+        <a href="products.html">Products</a>
+        <a href="#writing">Writing</a>
+        <a class="nav-contact" href="#contact">Contact</a>
       </div>
     </nav>
   </header>
-
   <main id="home">
     <div class="wrap">
       <section class="hero" aria-labelledby="hero-title">
         <div class="eyebrow"><span class="status-dot"></span> Open to GTM and growth roles</div>
         <h1 id="hero-title">I build products.<br><span>I market them.</span><br>I sell them.</h1>
-        <p class="intro">I work across B2B go-to-market, growth, and software. I’ve helped companies find buyers and close deals, and now I’m applying that same thinking to products I build myself.</p>
+        <p class="intro"><strong>What founders talk to me about.</strong></p>
+        <p class="lede" style="margin-top:16px">From finding product market fit to figuring out why an ad works, I&rsquo;m interested in what makes products click with people.</p>
+        <p class="lede" style="margin-top:16px">Lately, that means exploring positioning, UGC, ad creative, and the little details of marketing and sales that make a difference.</p>
+        <p class="lede" style="margin-top:16px">Four years in sales and marketing. Three products built. Still figuring things out.</p>
         <div class="hero-actions">
-          <a class="primary-link" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
-          <a class="text-link" href="mailto:jayeshmarathe2000jm@gmail.com">Get in touch ↗</a>
-          <a class="text-link" href="Jayesh-Marathe-Resume.pdf">Download resume ↗</a>
+          <a class="primary-link" href="#work">See what I&rsquo;ve built <span aria-hidden="true">&darr;</span></a>
+          <a class="text-link" href="#contact">Talk shop &nearr;</a>
         </div>
       </section>
 
       <div class="proof" aria-label="Selected proof points">
         <div class="proof-item"><strong>4+ years</strong><span>B2B GTM and sales</span></div>
         <div class="proof-item"><strong>$500K+</strong><span>Revenue closed at INZINT</span></div>
-        <div class="proof-item"><strong>3 products</strong><span>Built and marketed</span></div>
+        <div class="proof-item"><strong>6 products</strong><span>Built and marketed</span></div>
       </div>
 
       <section id="work">
         <div class="section-head">
-          <div><div class="section-label">01 / Selected work</div><h2 style="margin-top:12px">Work that moved things forward.</h2></div>
-          <span class="section-note">A few things I’ve worked on</span>
+          <div><div class="section-label">01 / Experience</div><h2 style="margin-top:12px">Where I&rsquo;ve worked.</h2></div>
+          <span class="section-note">Four roles, four different problems</span>
         </div>
         <div class="work-list">
           <div class="work-row">
-            <div class="work-kind">B2B sales · INZINT</div>
-            <div class="work-main"><h3>Turning software opportunities into revenue</h3><p>Owned white-label software deals end to end, from discovery and proposals to closing across seven clients.</p><p style="margin-top:10px"><a class="text-link" href="case-study-inzint.html">Read the full case study ↗</a></p></div>
-            <span class="arrow" aria-hidden="true">↗</span>
+            <div class="work-kind">Business Development Executive &middot; Mar to Sep 2022</div>
+            <div class="work-main"><h3>SDLC Corp</h3><p>Led a 5 member operations team running multichannel outreach campaigns, and owned the CRM and data workflows behind them.</p><p style="margin-top:10px">The work showed that outbound scales on operations, not just messaging: CRM, data, and team routines decide whether campaigns hold up.</p><p style="margin-top:10px"><a class="text-link" href="case-study-sdlc.html">Read the case study &nearr;</a></p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </div>
           <div class="work-row">
-            <div class="work-kind">0 → 1 GTM · Gritbyte</div>
-            <div class="work-main"><h3>Taking a conversational AI product to market</h3><p>Built the initial GTM system, refined the ICP, and connected sales conversations to product learning.</p></div>
+            <div class="work-kind">Business Development Executive &middot; Apr 2023 to Jan 2025</div>
+            <div class="work-main"><h3>INZINT</h3><p>Sold white label software to US and global clients, owning SaaS deals end to end, from first outreach to signed SOW.</p><p style="margin-top:10px">Closed $500K+ across seven clients, with custom proposals and SOWs instead of a generic deck.</p><p style="margin-top:10px"><a class="text-link" href="case-study-inzint.html">Read the case study &nearr;</a></p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </div>
           <div class="work-row">
-            <div class="work-kind">Outbound · Pravaah</div>
-            <div class="work-main"><h3>Finding the right buyers for very different businesses</h3><p>Worked across manufacturing and services, learning how audience and channel fit change the outcome.</p></div>
+            <div class="work-kind">Business Development Specialist &middot; Feb to May 2025</div>
+            <div class="work-main"><h3>Gritbyte Labs</h3><p>Designed and ran 0 to 1 go to market for a conversational AI product, from scratch, including the founder&rsquo;s outreach around conference appearances.</p><p style="margin-top:10px">The work sharpened the ICP and turned objections and demo feedback from real sales conversations into product learning.</p><p style="margin-top:10px"><a class="text-link" href="case-study-gritbyte.html">Read the case study &nearr;</a></p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </div>
           <div class="work-row">
-            <div class="work-kind">Operations · SDLC Corp</div>
-            <div class="work-main"><h3>Leading a 5-member team that ran campaigns at scale</h3><p>Led a 5-member operations team, ran multichannel campaigns, and supported outreach strategy, CRM and data workflows.</p></div>
+            <div class="work-kind">Sales Development Representative &middot; Aug 2025 to Jun 2026</div>
+            <div class="work-main"><h3>Pravaah Consulting</h3><p>Ran outbound for clients in very different markets, manufacturing and services, plus Pravaah&rsquo;s own pipeline, over email and LinkedIn.</p><p style="margin-top:10px">The same outbound motion behaved differently in each market, because audience and channel fit change the outcome before copy does.</p><p style="margin-top:10px"><a class="text-link" href="case-study-pravaah.html">Read the case study &nearr;</a></p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </div>
         </div>
       </section>
 
       <section id="products">
         <div class="section-head">
-          <div><div class="section-label">02 / Products</div><h2 style="margin-top:12px">Built, shipped, and marketed.</h2></div>
-          <span class="section-note">Live projects ↗</span>
+          <div><div class="section-label">02 / Products I&rsquo;ve built</div><h2 style="margin-top:12px">Built, shipped, and marketed.</h2></div>
+          <span class="section-note">Live projects &nearr;</span>
         </div>
         <div class="work-list">
           <a class="work-row" href="https://builtwithmuse.com/" target="_blank" rel="noreferrer">
-            <div class="work-kind">AI · Discovery</div>
-            <div class="work-main"><h3>Built with Muse</h3><p>A platform and guides around Meta Muse, built to help people discover workflows and access invite codes.</p></div>
-            <span class="arrow" aria-hidden="true">↗</span>
+            <div class="work-kind">AI &middot; Discovery</div>
+            <div class="work-main"><h3>BuiltWithMuse</h3><p>People who get access to Meta Muse still have to hunt for workflows worth using, and for a way in.</p><p style="margin-top:10px">A platform built around Meta Muse access, workflows, and discovery. Get or share an invite code from the community pool, and browse workflows by category. A waitlist is open for countries where Muse is not available yet. Try it at builtwithmuse.com &nearr;</p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </a>
           <a class="work-row" href="https://catalink.in/" target="_blank" rel="noreferrer">
-            <div class="work-kind">Commerce · Utility</div>
-            <div class="work-main"><h3>Catalink</h3><p>A simple catalog tool for sellers who want to share products without setting up a full online store.</p></div>
-            <span class="arrow" aria-hidden="true">↗</span>
+            <div class="work-kind">Commerce &middot; Utility</div>
+            <div class="work-main"><h3>Catalink</h3><p>Sellers share products and prices in chat, and have no simple catalog to point buyers to.</p><p style="margin-top:10px">A simple catalog tool for sellers who share products and prices and bring buyers into their existing chat flow. A buyer taps &ldquo;I want this&rdquo; and lands in the seller&rsquo;s chat, where the seller confirms and takes payment directly. First month free, then Rs 500/month. Try it at catalink.in &nearr;</p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </a>
           <a class="work-row" href="https://rentnyc.live/" target="_blank" rel="noreferrer">
-            <div class="work-kind">Housing · Data</div>
-            <div class="work-main"><h3>RentNYC</h3><p>A rent transparency map for New York City renters, with an AI rental-rights assistant.</p></div>
-            <span class="arrow" aria-hidden="true">↗</span>
+            <div class="work-kind">Housing &middot; Data</div>
+            <div class="work-main"><h3>RentNYC</h3><p>NYC renters cannot easily tell whether a rent is fair, or what their rights are when something goes wrong.</p><p style="margin-top:10px">A rent transparency map for NYC renters, with live stats. The map takes a few seconds to load. The AI rental rights assistant answers NYC tenant rights questions based on official NYC and New York State sources. It gives general information, not legal advice. Try it at rentnyc.live &nearr;</p></div>
+            <span class="arrow" aria-hidden="true">&nearr;</span>
           </a>
         </div>
-        <p style="margin-top:22px"><a class="text-link" href="products.html">See all products and systems ↗</a></p>
+        <p style="margin-top:22px"><a class="text-link" href="products.html">See all products &nearr;</a></p>
       </section>
 
-      <section id="bundles">
-        <div class="section-head keep-inline">
-          <div><div class="section-label">03 / Bundles</div><h2 style="margin-top:12px">Strategy bundles, packaged to use.</h2></div>
-          <span class="section-note">Strategies I have used to grow.</span>
+      <section id="writing">
+        <div class="section-head">
+          <div><div class="section-label">03 / Writing and ideas</div><h2 style="margin-top:12px">Things I&rsquo;m thinking through.</h2></div>
         </div>
-        <p style="margin-top:22px"><a class="text-link" href="bundles.html">See all strategy bundles ↗</a></p>
+        <a class="writing-line" href="https://secondorderdaily.substack.com/" target="_blank" rel="noreferrer"><div><h3>Second Order</h3><p>Beyond the first take.</p></div><span class="arrow" aria-hidden="true">&nearr;</span></a>
+        <a class="writing-line" href="https://secondorderdaily.substack.com/p/give-every-channel-its-own-door" target="_blank" rel="noreferrer"><div><h3>Give Every Channel Its Own Door</h3><p>Second Order</p></div><span class="arrow" aria-hidden="true">&nearr;</span></a>
+        <a class="writing-line" href="https://www.linkedin.com/in/jayeshmarathe" target="_blank" rel="noreferrer"><div><h3>LinkedIn</h3><p>GTM, sales, and lessons from the work.</p></div><span class="arrow" aria-hidden="true">&nearr;</span></a>
+        <a class="writing-line" href="https://x.com/JayeshFever1" target="_blank" rel="noreferrer"><div><h3>X</h3><p>Building and marketing in public.</p></div><span class="arrow" aria-hidden="true">&nearr;</span></a>
+        <p style="margin-top:22px"><a class="text-link" href="bundles.html">Strategy bundles &nearr;</a></p>
       </section>
-
 
       <section id="about">
         <div class="about-grid">
@@ -287,28 +302,22 @@
         <p class="chips"><span>GTM strategy</span><span>ICP refinement</span><span>0 to 1 GTM</span><span>Outbound pipeline</span><span>Full cycle B2B sales</span><span>CRM optimisation</span><span>RevOps</span><span>n8n</span><span>Zapier</span><span>Make</span><span>Clay</span><span>Instantly</span><span>GPT</span><span>Claude</span><span>Zoho</span><span>Salesforce</span><span>HubSpot</span><span>Figma</span><span>Canva</span><span>Gamma</span></p>
       </section>
 
-      <section id="writing">
-        <div class="section-head">
-          <div><div class="section-label">06 / Notes</div><h2 style="margin-top:12px">Things I’m thinking through.</h2></div>
-        </div>
-        <a class="writing-line" href="https://www.linkedin.com/in/jayeshmarathe" target="_blank" rel="noreferrer"><div><h3>GTM, sales, and lessons from the work</h3><p>Short notes from real sales and product experiences.</p></div><span class="arrow" aria-hidden="true">↗</span></a>
-        <a class="writing-line" href="https://x.com/JayeshFever1" target="_blank" rel="noreferrer"><div><h3>Building and marketing in public</h3><p>Experiments, product observations, and marketing strategy.</p></div><span class="arrow" aria-hidden="true">↗</span></a>
-      </section>
-
       <section class="contact" id="contact">
-        <div class="section-label">07 / Contact</div>
-        <h2 style="margin-top:18px">Working on something interesting?</h2>
+        <div class="section-label">06 / Contact</div>
+        <h2 style="margin-top:18px">Talk shop?</h2>
+        <p class="lede" style="margin-top:18px">If you are building something and working through positioning, UGC, ad creative, or outreach, I would like to hear about it.</p>
         <div class="hero-actions" style="margin-top:28px">
-          <a class="primary-link" href="mailto:jayeshmarathe2000jm@gmail.com">Email me ↗</a>
+          <a class="primary-link" href="mailto:jayeshmarathe2000jm@gmail.com">Email me &nearr;</a>
           <a class="primary-link" href="Jayesh-Marathe-Resume.pdf">Download resume (PDF)</a>
         </div>
         <div class="contact-bottom">
-          <a class="email" href="mailto:jayeshmarathe2000jm@gmail.com">jayeshmarathe2000jm@gmail.com ↗</a>
-          <div class="socials"><a href="https://www.linkedin.com/in/jayeshmarathe" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://x.com/JayeshFever1" target="_blank" rel="noreferrer">X ↗</a></div>
+          <a class="email" href="mailto:jayeshmarathe2000jm@gmail.com">jayeshmarathe2000jm@gmail.com &nearr;</a>
+          <div class="socials"><a href="https://www.linkedin.com/in/jayeshmarathe" target="_blank" rel="noreferrer">LinkedIn &nearr;</a><a href="https://x.com/JayeshFever1" target="_blank" rel="noreferrer">X &nearr;</a></div>
         </div>
       </section>
     </div>
   </main>
+
   <footer class="wrap"><span>© 2026 Jayesh Marathe</span><a href="#home">Back to top ↑</a></footer>
 </body>
 </html>
