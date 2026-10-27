@@ -87,7 +87,8 @@
       .wrap { width: min(100% - 36px, var(--max)); }
       .nav { min-height: 62px; }
       .navlinks { gap: 14px; }
-      .navlinks a:not(.nav-contact) { display: none; }
+      .nav { flex-wrap: wrap; row-gap: 4px; padding: 10px 0; }
+      .navlinks { gap: 12px; font-size: 11px; }
       .hero { padding-top: 36px; padding-bottom: 48px; }
       h1 { font-size: clamp(46px, 13vw, 70px); }
       .proof { gap: 13px; }
@@ -176,10 +177,9 @@
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="wordmark" href="index.html">JAYESH MARATHE</a>
       <div class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="bundles.html">Bundles</a>
         <a href="index.html#work">Work</a>
+        <a href="products.html">Products</a>
+        <a href="index.html#writing">Writing</a>
         <a class="nav-contact" href="index.html#contact">Contact ↗</a>
       </div>
     </nav>
