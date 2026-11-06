@@ -11,6 +11,10 @@
     {
       "destination": "/Jayesh-Marathe-Resume.pdf",
       "source": "/resume"
+    },
+    {
+      "destination": "/experiments.html",
+      "source": "/experiments"
     }
   ],
   "redirects": [
